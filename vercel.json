@@ -1,11 +1,6 @@
 {
   "buildCommand": "pnpm install && pnpm build",
   "outputDirectory": "dist",
-  "functions": {
-    "api/db.ts": {
-      "runtime": "@vercel/node@16"
-    }
-  },
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/(.*)", "destination": "/index.html" }
