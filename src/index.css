@@ -1,0 +1,167 @@
+/* stylelint-disable */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Magnet Vault – light pink butterfly-themed design system */
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+    /* Light pink theme */
+    --background: 330 40% 97%;
+    --foreground: 330 35% 18%;
+    --card: 330 30% 99%;
+    --card-foreground: 330 35% 18%;
+    --popover: 330 30% 99%;
+    --popover-foreground: 330 35% 18%;
+    --primary: 330 85% 52%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 330 35% 92%;
+    --secondary-foreground: 330 35% 25%;
+    --muted: 330 25% 93%;
+    --muted-foreground: 330 20% 48%;
+    --accent: 310 40% 90%;
+    --accent-foreground: 330 35% 25%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 330 30% 85%;
+    --input: 330 25% 90%;
+    --ring: 330 85% 52%;
+    --chart-1: 330 85% 52%;
+    --chart-2: 300 70% 55%;
+    --chart-3: 350 75% 58%;
+    --chart-4: 280 65% 58%;
+    --chart-5: 260 60% 60%;
+    --sidebar-background: 330 35% 95%;
+    --sidebar-foreground: 330 35% 22%;
+    --sidebar-primary: 330 85% 52%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 330 30% 90%;
+    --sidebar-accent-foreground: 330 35% 22%;
+    --sidebar-border: 330 28% 82%;
+    --sidebar-ring: 330 85% 52%;
+  }
+
+  /* Keep .dark identical to :root — app is intentionally light-only */
+  .dark {
+    --background: 330 40% 97%;
+    --foreground: 330 35% 18%;
+    --card: 330 30% 99%;
+    --card-foreground: 330 35% 18%;
+    --popover: 330 30% 99%;
+    --popover-foreground: 330 35% 18%;
+    --primary: 330 85% 52%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 330 35% 92%;
+    --secondary-foreground: 330 35% 25%;
+    --muted: 330 25% 93%;
+    --muted-foreground: 330 20% 48%;
+    --accent: 310 40% 90%;
+    --accent-foreground: 330 35% 25%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 330 30% 85%;
+    --input: 330 25% 90%;
+    --ring: 330 85% 52%;
+    --chart-1: 330 85% 52%;
+    --chart-2: 300 70% 55%;
+    --chart-3: 350 75% 58%;
+    --chart-4: 280 65% 58%;
+    --chart-5: 260 60% 60%;
+    --sidebar-background: 330 35% 95%;
+    --sidebar-foreground: 330 35% 22%;
+    --sidebar-primary: 330 85% 52%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 330 30% 90%;
+    --sidebar-accent-foreground: 330 35% 22%;
+    --sidebar-border: 330 28% 82%;
+    --sidebar-ring: 330 85% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 6px;
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 3px;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Glitter dots animation */
+@keyframes glitter-pulse {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+.glitter-dot {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: glitter-pulse 2s ease-in-out infinite;
+  z-index: 0;
+}
+
+/* Floating butterfly animation — uses per-element --drift-x for varied horizontal drift */
+@keyframes butterfly-float {
+  0%   { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+  8%   { opacity: 0.6; }
+  40%  { transform: translateY(55vh) translateX(calc(var(--drift-x, 30px) * 0.5)) rotate(8deg); }
+  70%  { transform: translateY(20vh) translateX(var(--drift-x, 30px)) rotate(-6deg); }
+  92%  { opacity: 0.25; }
+  100% { transform: translateY(-12vh) translateX(calc(var(--drift-x, 30px) * 1.2)) rotate(3deg); opacity: 0; }
+}
+
+.butterfly-float {
+  position: fixed;
+  pointer-events: none;
+  font-size: 1.25rem;
+  animation: butterfly-float linear infinite;
+  z-index: 0;
+}
+
+/* Spin animation for sync icon */
+@keyframes mv-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.mv-spin {
+  animation: mv-spin 1s linear infinite;
+}
+
+/* Shake animation for destructive confirm */
+@keyframes mv-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
+}
+
+.mv-shake {
+  animation: mv-shake 0.4s ease-in-out;
+}
+
+/* Gradient text utility — vivid pink-to-purple for light backgrounds */
+.gradient-text {
+  background: linear-gradient(135deg, hsl(330 85% 48%), hsl(300 70% 50%), hsl(280 65% 55%));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
